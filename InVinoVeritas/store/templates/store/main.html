@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>In Vino Veritas</title>
+	<link rel="icon" type="image/x-icon" href="{% static 'images/WHITE_ICON.ico' %}">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+
+
+		<script type="text/javascript">
+			var user = '{{request.user}}'
+
+			function getToken(name){
+				var cookieValue = null;
+				if(document.cookie && document.cookie !== ''){
+					var cookies = document.cookie.split(';');
+					for (var i=0; i < cookies.length; i++){
+						var cookie = cookies[i].trim();
+						if (cookie.substring(0,name.length + 1)===(name + '=')){
+							cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+							break;
+						}
+					}
+				}
+				return cookieValue;
+			}
+			var csrftoken = getToken('csrftoken');
+
+
+		</script>
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-dark ">
+	  <a class="navbar-brand" href="{% url 'store' %}" style="font-size: 16px;"><img src="{% static 'images/In Vino.png' %}" style="height: 90px; padding-left: 20px;"></a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="{% url 'store' %}"> <span class="sr-only">(current)</span></a>
+	      </li>
+	 
+	    </ul>
+			<div class="secondnav">
+            <ul>
+                <li class="active"><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'store' %}">Menu</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact">About Us</a></li>
+            </ul>
+			</div>
+
+	    <div class="form-inline my-2 my-lg-0">
+	     	<a href="{% url 'register' %}"class="btn btn-warning">Login</a>
+	     	
+	     	<a href="{% url 'cart' %}">
+	    		<img  id="cart-icon" src="{% static 'images/shop.svg' %}">
+	    	</a>
+	    	<p id="cart-total">{{cartItems}}</p>
+
+	    </div>
+	  </div>
+	</nav>
+
+     <div class="container">
+            <br>
+            {% block content %}
+
+
+            {% endblock content %}
+         </div>
+
+
+
+	
+
+
+
+
+
+
+
+<div class="loader" id="loader">
+	<div class="preloader">
+		<svg class="cart" role="img" aria-label="Shopping cart line animation" viewBox="0 0 128 128" width="128px" height="128px" xmlns="http://www.w3.org/2000/svg">
+			<g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="8">
+				<g class="cart__track" stroke="hsla(0,10%,10%,0.1)">
+					<polyline points="4,4 21,4 26,22 124,22 112,64 35,64 39,80 106,80" />
+					<circle cx="43" cy="111" r="13" />
+					<circle cx="102" cy="111" r="13" />
+				</g>
+			</g>
+		</svg>
+		<div class="preloader__text">
+			<p class="preloader__msg">In Vino Veritas</p>
+			<p class="preloader__msg preloader__msg--last"> Something Went Wrong.</p>
+		</div>
+	</div>
+</div>
+<script>
+
+    window.addEventListener('load', function() {
+        var loader = document.getElementById('loader');  
+        setTimeout(function() {
+            loader.style.display = 'none';
+        }, 1000);
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+	<script src="{% static 'js/cart.js' %}"></script>
+</body>
+</html>

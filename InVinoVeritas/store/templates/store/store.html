@@ -1,0 +1,39 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<div style="text-align: center;">
+<h2 style="font-weight: bold;">Our Menu</h5><p style="color: rgb(209, 161, 0);margin-top: -10px;font-weight: 500;"></p></div>
+	<div class="row">
+		{% for product in products%}
+		<div class="col-md-3">
+			<div class="borders">
+			<img class="thumbnail" src="{{product.imageURL}}">
+			<div class="box-element product">
+				<h6>{{product.name}}<span style="display: inline-block; float: right">₱ {{product.price|floatformat:2}}</h6>
+				<button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+				<a  class="btn btn-outline-success" href="#" style="padding-top: 11px;background-color: azure; color: rgb(209, 161, 0);">View</a>
+			</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	<script>
+		const spinImage = document.getElementById('plate');
+
+let rotation = 0;
+
+
+function spin() {
+    rotation += .1;
+    spinImage.style.transform = `rotate(${rotation}deg)`;
+    requestAnimationFrame(spin);
+}
+
+spin();
+	</script>
+	
+
+{% endblock content %}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+<style>
+     @font-face {
+    font-family: myFirstFont;
+    src: url("/static/images/Poppins-Regular.ttf");
+     }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+    ul{
+        margin-top: -20px;
+    }
+    li{
+        text-decoration: none;
+        list-style: none;
+        font-size: 9px;
+    }
+    .helptext{
+        display: none;
+    }
+    h2 {
+        color: #ffffff;
+        text-align: center;
+    }
+    form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 340px;
+        margin: 50px auto;
+        background: transparent;
+        backdrop-filter: blur(5px);
+        border: 2px solid #fff;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background: transparent;
+        color: #fff;
+    }
+    button[type="submit"] {
+        background-color: #ecc500;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 200px;
+        font-family: myFirstFont;
+        font-weight: bolder;
+        margin-left: 70px;
+    }
+    button[type="submit"]:hover {
+        background-color: #c99700;
+    }
+    p {
+        text-align: center;
+        margin-top: 10px;
+        color: #ccc;
+    }
+    .already{
+        color: #ccc;
+    }
+    img{
+        height: 230px;
+        margin-left: 33%;
+    }
+    </style>
+<body>
+    <img src="{% static 'images/In Vino.png' %}">
+    <h2>Welcome to In Vino Veritas</h2>
+    <form method="post" action="{% url 'user_login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>
